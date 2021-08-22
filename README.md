@@ -37,7 +37,7 @@ with [fast.ai](https://docs.fast.ai)'s
     </tr>
     <tr>
       <td>doy</td>
-      <td>day of year</td>
+      <td>day of year (UTC)</td>
       <td>cont</td>
       <td>int</td>
       <td>1 - 366</td>
@@ -53,7 +53,7 @@ with [fast.ai](https://docs.fast.ai)'s
     </tr>
     <tr>
       <td>time</td>
-      <td>time (sec of d)</td>
+      <td>time (sec of d, UTC)</td>
       <td>cont</td>
       <td>int</td>
       <td>0 - 86399</td>
@@ -193,8 +193,9 @@ with [fast.ai](https://docs.fast.ai)'s
 
 Note:
 
-1. cont = continuous, cat = categorical
-2. all int value will be converted to float for faster computing (idk why)
+1. `cont` = continuous, `cat` = categorical
+2. all ``int`` value will be converted to `float` for faster computing (idk why)
+3. `foing`, `foer`, `favcnt` and `tcnt` are estimated by `y=x^1.5` based on `cry`
 
 ### Media Types
 
