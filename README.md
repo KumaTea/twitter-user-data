@@ -36,12 +36,36 @@ with [fast.ai](https://docs.fast.ai)'s
       <td>11451419198101919810</td>
     </tr>
     <tr>
-      <td>doy</td>
-      <td>day of year (UTC)</td>
+      <td>yr</td>
+      <td>year (UTC+8)</td>
       <td>cont</td>
       <td>int</td>
-      <td>1 - 366</td>
-      <td>114 (April 24)</td>
+      <td></td>
+      <td>2021</td>
+    </tr>
+    <tr>
+      <td>mo</td>
+      <td>month (UTC+8)</td>
+      <td>cont</td>
+      <td>int</td>
+      <td></td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <td>dt</td>
+      <td>date (UTC+8)</td>
+      <td>cont</td>
+      <td>int</td>
+      <td></td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <td>wk</td>
+      <td>week (UTC+8)</td>
+      <td>cont</td>
+      <td>int</td>
+      <td></td>
+      <td>36</td>
     </tr>
     <tr>
       <td>dow</td>
@@ -52,16 +76,32 @@ with [fast.ai](https://docs.fast.ai)'s
       <td>3 (Wed)</td>
     </tr>
     <tr>
+      <td>doy</td>
+      <td>day of year (UTC+8)</td>
+      <td>cont</td>
+      <td>int</td>
+      <td></td>
+      <td>114</td>
+    </tr>
+    <tr>
       <td>time</td>
-      <td>time (sec of d, UTC)</td>
+      <td>time (sec of d, UTC+8)</td>
       <td>cont</td>
       <td>int</td>
       <td>0 - 86399</td>
       <td>64800 (18:00)</td>
     </tr>
     <tr>
-      <td>intv</td>
+      <td>last</td>
       <td>interval since last tweet (sec)</td>
+      <td>cont</td>
+      <td>int</td>
+      <td></td>
+      <td>114514</td>
+    </tr>
+    <tr>
+      <td>nxt</td>
+      <td>interval until next tweet (sec)</td>
       <td>cont</td>
       <td>int</td>
       <td></td>
@@ -151,12 +191,12 @@ with [fast.ai](https://docs.fast.ai)'s
       <td>514</td>
     </tr>
     <tr>
-      <td>cry</td>
-      <td>created_at year</td>
-      <td>cat</td>
+      <td>crd</td>
+      <td>created days</td>
+      <td>cont</td>
       <td>str</td>
-      <td>2006 -</td>
-      <td>2015</td>
+      <td></td>
+      <td>1919</td>
     </tr>
     <tr>
       <td>favcnt</td>
@@ -195,16 +235,16 @@ Note:
 
 1. `cont` = continuous, `cat` = categorical
 2. all ``int`` value will be converted to `float` for faster computing (idk why)
-3. `foing`, `foer`, `favcnt` and `tcnt` are estimated by `y=x^1.5` based on `cry`
+3. `foing`, `foer`, `favcnt` and `tcnt` are estimated by `y=x^1.5` based on `crd`
 
 ### Media Types
 
-1. None
-2. 1 pic
-3. 2 pic
-4. 3 pic
-5. 4 pic
+1. text (No media)
+2. pic1
+3. pic2
+4. pic3
+5. pic4
 6. gif
 7. video
-8. voice
-9. poll
+8. ~~poll~~ (can't detect)
+9. ~~voice~~ (can't detect)
