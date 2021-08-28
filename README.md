@@ -8,9 +8,18 @@ The purpose of this repo is to learn Deep Learning
 with [fast.ai](https://docs.fast.ai)'s
 [Tabular tutorial](https://docs.fast.ai/tutorial.tabular.html).
 
+#### Update
+
+This project has been suspended: the loss always divergences, and I can't get an acceptable accuracy.
+
+The desensitized data (removing `tid`) will be published on [releases](https://github.com/KumaTea/tweet-likes-predict/releases).
+
 ---
 
 ## Factors / Parameters
+
+<details>
+  <summary>Click to expand...</summary>
 
 <table>
   <thead align="center">
@@ -70,10 +79,10 @@ with [fast.ai](https://docs.fast.ai)'s
     <tr>
       <td>dow</td>
       <td>day of week</td>
-      <td>cat</td>
+      <td>cont</td>
       <td>int</td>
-      <td>1 - 7</td>
-      <td>3 (Wed)</td>
+      <td>0 - 6</td>
+      <td>2 (Wed)</td>
     </tr>
     <tr>
       <td>doy</td>
@@ -236,6 +245,8 @@ Note:
 1. `cont` = continuous, `cat` = categorical
 2. all ``int`` value will be converted to `float` for faster computing (idk why)
 3. `foing`, `foer`, `favcnt` and `tcnt` are estimated by `y=x^1.5` based on `crd`
+
+</details>
 
 ### Media Types
 
