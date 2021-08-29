@@ -1,3 +1,4 @@
+import os
 from datetime import datetime, timedelta
 
 
@@ -11,3 +12,8 @@ def exp_calc(x, y, x1, power=1.5):
     z1 = x1 ** power
     y1 = z1 * r
     return y1
+
+
+def mkdir(name):
+    if not os.path.isdir(name):
+        os.mkdir(name)

@@ -45,11 +45,11 @@ def get_tweet_freq(user, then=None, tweet=None, exp=True, now=None):
         crd_then = get_created_days(user, to_cst(then))
         total_tweets_then = exp_calc(crd, total_tweets, crd_then)
         try:
-            tweet_freq = total_tweets_then / crd_then
+            tweet_freq = 24 * 3600 * total_tweets_then / crd_then
         except ZeroDivisionError:
             return 0
     else:
-        tweet_freq = total_tweets / crd
+        tweet_freq = 24 * 3600 * total_tweets / crd
 
     return tweet_freq
 
@@ -64,15 +64,15 @@ def get_intervals(user, all_tweets, tweet=None, tweet_index=None):
     if tweet_index == 0:  # first
         tfrq = get_tweet_freq(user, tweet.created_at, tweet)
         next_sec = tfrq
-        last_sec = (tweet.created_at - all_tweets[tweet_index + 1].created_at).seconds
+        last_sec = (tweet.created_at - all_tweets[tweet_index + 1].created_at).total_seconds()
     elif tweet_index == len(all_tweets) - 1:  # last
         tfrq = get_tweet_freq(user, tweet.created_at, tweet)
-        next_sec = (tweet.created_at - all_tweets[tweet_index - 1].created_at).seconds
+        next_sec = (all_tweets[tweet_index - 1].created_at - tweet.created_at).total_seconds()
         last_sec = tfrq
     else:
-        next_sec = (tweet.created_at - all_tweets[tweet_index - 1].created_at).seconds
+        next_sec = (all_tweets[tweet_index - 1].created_at - tweet.created_at).total_seconds()
         # until next newer tweet
-        last_sec = (tweet.created_at - all_tweets[tweet_index + 1].created_at).seconds
+        last_sec = (tweet.created_at - all_tweets[tweet_index + 1].created_at).total_seconds()
 
     return next_sec, last_sec
 
