@@ -1,4 +1,5 @@
 import pickle
+import tweepy
 from tqdm import tqdm
 from session import kuma
 from meta import write_meta
@@ -32,7 +33,10 @@ if __name__ == '__main__':
     friends_info = info_data.copy()
     for user in tqdm(friends_ids):
         if user not in friends_info:
-            friends_info[user] = get_info(user)
+            try:
+                friends_info[user] = get_info(user)
+            except tweepy.error.TweepError:
+                pass
     if not info_data == friends_info:
         with open(info_path, 'wb') as f:
             pickle.dump(friends_info, f)
@@ -43,7 +47,10 @@ if __name__ == '__main__':
     friends_tweets = tweets_data.copy()
     for user in tqdm(friends_ids):
         if user not in friends_tweets:
-            friends_tweets[user] = get_tweets(user, tweets_start, tweets_end)
+            try:
+                friends_tweets[user] = get_tweets(user, tweets_start, tweets_end)
+            except tweepy.error.TweepError:
+                pass
     if not tweets_data == friends_tweets:
         with open(tweets_path, 'wb') as f:
             pickle.dump(friends_tweets, f)
