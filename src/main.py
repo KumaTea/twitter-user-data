@@ -1,5 +1,4 @@
 import pickle
-import tweepy
 from tqdm import tqdm
 from session import kuma
 from meta import write_meta
@@ -9,7 +8,7 @@ from fetch_tweets import get_tweets
 from datetime import datetime, timedelta
 
 
-if __name__ == '__main__':
+def main():
     print('Initializing...')
     now = datetime.now()
     info_date = now.replace(hour=0, minute=0, second=0, microsecond=0)
@@ -23,8 +22,8 @@ if __name__ == '__main__':
     meta_path, info_path, tweets_path = new_empty_data(info_date_str, tweets_date_str)
 
     print('Getting friends ids...')
-    kuma._me = kuma.me()
-    friends_ids = kuma.friends_ids()
+    kuma._me = kuma.get_user(screen_name='KumaTea0')
+    friends_ids = kuma.get_friend_ids()
     friends_ids.append(kuma._me.id)
 
     print('Getting friends info...')
@@ -34,8 +33,8 @@ if __name__ == '__main__':
     for user in tqdm(friends_ids):
         if user not in friends_info:
             try:
-                friends_info[user] = get_info(user)
-            except tweepy.error.TweepError:
+                friends_info[user] = get_info(user_id=user)
+            except:
                 pass
     if not info_data == friends_info:
         with open(info_path, 'wb') as f:
@@ -49,7 +48,7 @@ if __name__ == '__main__':
         if user not in friends_tweets:
             try:
                 friends_tweets[user] = get_tweets(user, tweets_start, tweets_end)
-            except tweepy.error.TweepError:
+            except:
                 pass
     if not tweets_data == friends_tweets:
         with open(tweets_path, 'wb') as f:
@@ -59,3 +58,7 @@ if __name__ == '__main__':
     write_meta(meta_path, friends_ids, now, tweets_date)
 
     print('Done.')
+
+
+if __name__ == '__main__':
+    main()

@@ -14,6 +14,7 @@ def new_empty_data(info_date: str, tweets_date: str):
 
     for i in [meta_path, info_path, tweets_path]:
         if not os.path.isfile(i):
+            print('  Creating empty', i)
             with open(i, 'wb') as f:
                 pickle.dump({}, f)
 

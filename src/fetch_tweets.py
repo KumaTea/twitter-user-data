@@ -16,7 +16,7 @@ def get_tweets(user_id, date, end_date=None, slim=True):
 
     user_tweets = []
     for status in tweepy.Cursor(
-            kuma.user_timeline, user_id,
+            kuma.user_timeline, user_id=user_id,
             trim_user=True, exclude_replies=False, include_rts=False,
             count=200).items():
         if status.created_at >= end_date:
