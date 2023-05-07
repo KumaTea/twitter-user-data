@@ -12,7 +12,7 @@ def new_empty_data(info_date: str, tweets_date: str):
     info_path = f'../data/info/{info_date}.p'
     tweets_path = f'../data/tweets/{tweets_date}.p'
 
-    for i in [meta_path, info_path, tweets_path]:
+    for i in [meta_path, info_path]:
         if not os.path.isfile(i):
             print('  Creating empty', i)
             with open(i, 'wb') as f:

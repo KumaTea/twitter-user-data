@@ -1,4 +1,5 @@
 import pickle
+import logging
 from tqdm import tqdm
 from session import kuma
 from meta import write_meta
@@ -40,6 +41,7 @@ def main():
         with open(info_path, 'wb') as f:
             pickle.dump(friends_info, f)
 
+    '''
     print('Getting friends tweets...')
     with open(tweets_path, 'rb') as f:
         tweets_data = pickle.load(f)
@@ -48,14 +50,15 @@ def main():
         if user not in friends_tweets:
             try:
                 friends_tweets[user] = get_tweets(user, tweets_start, tweets_end)
-            except:
-                pass
+            except Exception as e:
+                logging.error(F'[ERROR] user {user}: ' + str(e))
     if not tweets_data == friends_tweets:
         with open(tweets_path, 'wb') as f:
             pickle.dump(friends_tweets, f)
 
     print('Writing meta info...')
     write_meta(meta_path, friends_ids, now, tweets_date)
+    '''
 
     print('Done.')
 
